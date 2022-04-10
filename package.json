@@ -31,7 +31,9 @@
     "package:l": "electron-builder -l",
     "package:w": "electron-builder -w",
     "package:m": "electron-builder -m",
-    "package:checksums": "bash scripts/checksum.sh"
+    "package:checksums": "bash scripts/checksum.sh",
+    "app:dir": "electron-builder --dir",
+    "app:dist": "electron-builder"
   },
   "dependencies": {
     "@electron/remote": "^2.0.1",
@@ -92,7 +94,7 @@
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
     "electron": "^16.0.5",
-    "electron-builder": "^22.14.5",
+    "electron-builder": "^23.0.3",
     "esbuild": "^0.14.8",
     "esbuild-plugin-postcss2": "^0.1.1",
     "esbuild-plugin-svg": "^0.1.0",

@@ -7,6 +7,7 @@ import { TrackModel } from '../../../shared/types/museeks';
 
 import cellStyles from '../TracksListHeader/TracksListHeader.module.css';
 import styles from './TrackRow.module.css';
+import Cover from '../Cover/Cover';
 
 interface Props {
   selected: boolean;
@@ -137,6 +138,7 @@ export default class TrackRow extends React.PureComponent<Props, State> {
         onDragEnd={(draggable && this.props.onDragEnd) || undefined}
         {...(this.props.isPlaying ? { 'data-is-playing': true } : {})}
       >
+        <Cover path={track.path} />
         <div className={`${styles.cell} ${cellStyles.cellTrackPlaying}`}>
           {this.props.isPlaying ? <PlayingIndicator /> : null}
         </div>

@@ -27,7 +27,7 @@ import styles from './TracksList.module.css';
 const { shell } = electron;
 
 const CHUNK_LENGTH = 20;
-const ROW_HEIGHT = 30; // FIXME
+const ROW_HEIGHT = 50; // FIXME
 const TILES_TO_DISPLAY = 5;
 const TILE_HEIGHT = ROW_HEIGHT * CHUNK_LENGTH;
 
