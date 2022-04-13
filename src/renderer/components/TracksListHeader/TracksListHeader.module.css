@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.cellCover {
+  width: 58px;
+}
+
 .cellTrack {
   flex: 1;
 }

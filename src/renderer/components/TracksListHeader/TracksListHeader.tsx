@@ -38,6 +38,12 @@ class TracksListHeader extends React.Component<Props> {
 
     return (
       <div className={styles.tracksListHeader}>
+        <TracksListHeaderCell
+          className={styles.cellCover}
+          title='Cover'
+          sortBy={enableSort ? SortBy.TITLE : null}
+          icon={TracksListHeader.getIcon(sort, SortBy.TITLE)}
+        />
         <TracksListHeaderCell className={styles.cellTrackPlaying} title='&nbsp;' />
         <TracksListHeaderCell
           className={styles.cellTrack}
