@@ -22,7 +22,8 @@
 
 /* Global styles */
 html {
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
   user-select: none;
   height: 100%;
   overflow: hidden;
@@ -32,7 +33,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   color: var(--text);
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
   user-select: none;
   height: 100%;
   overflow: hidden;
