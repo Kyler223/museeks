@@ -45,6 +45,15 @@ const SettingsLibrary: React.FC<Props> = (props) => {
         </Button>
       </Setting.Section>
       <Setting.Section>
+        <h3>Sync Music</h3>
+        <Setting.Description>
+          This will sync your folders of music with your library.
+        </Setting.Description>
+        <Button>
+          Sync
+        </Button>
+      </Setting.Section>
+      <Setting.Section>
         <h3>Danger zone</h3>
         <Button
           relevancy='danger'

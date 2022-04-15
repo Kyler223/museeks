@@ -46,7 +46,7 @@
     "--checkbox-bg": "hsl(216, 20%, 17%)",
     "--input-bg": "hsl(216, 20%, 15%)",
     "--input-color": "#efefef",
-    "--button-bg": "hsl(216, 20%, 15%)",
+    "--button-bg": "#5BC0DE",
     "--button-color": "#efefef"
   }
 }
