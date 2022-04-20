@@ -8,6 +8,7 @@
 .playingBar__cover {
   width: 60px;
   flex: 0 0 auto;
+  padding-right: 74px;
 }
 
 .playingBar__queue {

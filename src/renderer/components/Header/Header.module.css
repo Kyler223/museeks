@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  height: 65px;
   flex: 0 0 auto;
 
   /* Draggable region (zone able to move the window) */

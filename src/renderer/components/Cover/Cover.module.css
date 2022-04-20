@@ -1,17 +1,15 @@
 .cover {
-  width: 48px;
-  height: 48px;
-  margin-right: 10px;
+  width: 50px;
+  height: 50px;
   background-position: center;
   background-size: cover;
   text-align: center;
-  border-style: solid;
-  border-color: var(--border-color);
-  border-width: 0 1px;
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: content-box;
+  margin: auto 8px;
 }
 
 .cover__note {
