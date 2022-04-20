@@ -56,6 +56,13 @@ const SettingsUI: React.FC<Props> = (props) => {
           onClick={SettingsActions.toggleDisplayNotifications}
         />
         <CheckboxSetting
+          slug='playlistadding'
+          title='Add Tracks To Bottom Of Playlist'
+          description='tracks will be sent to the bottom of a playlist when added'
+          defaultValue={config.playlistAdding}
+          onClick={SettingsActions.togglePlaylistAdding}
+        />
+        <CheckboxSetting
           slug='sleepmode'
           title='Sleep mode blocker'
           description='Prevent the computer from going into sleep mode'

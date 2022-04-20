@@ -145,7 +145,7 @@ export interface Config {
     by: SortBy;
     order: SortOrder;
   };
-  // musicFolders: string[],
+  playlistAdding: boolean,
   sleepBlocker: boolean;
   autoUpdateChecker: boolean;
   minimizeToTray: boolean;

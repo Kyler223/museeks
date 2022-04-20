@@ -93,6 +93,20 @@ export const check = async (): Promise<void> => {
 };
 
 /**
+ * Set playlist adding (bottom or top)
+ */
+ export const togglePlaylistAdding = (value: boolean): void => {
+  app.config.set('playlistAdding', value);
+  app.config.save();
+
+  // ipcRenderer.send('settings:toggleSleepBlocker', value);
+
+  store.dispatch({
+    type: types.REFRESH_CONFIG,
+  });
+};
+
+/**
  * Toggle sleep blocker
  */
 export const toggleSleepBlocker = (value: boolean): void => {

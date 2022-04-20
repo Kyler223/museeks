@@ -8,6 +8,7 @@ import types from '../action-types';
 import * as app from '../../lib/app';
 import * as ToastsActions from './ToastsActions';
 import * as PlayerActions from './PlayerActions';
+import ConfigModule from '../../../main/modules/config';
 
 const remote = require('@electron/remote');
 
@@ -118,7 +119,15 @@ export const addTracks = async (_id: string, tracksIds: string[], isShown?: bool
 
   try {
     const playlist = await app.db.Playlist.findOneAsync({ _id });
-    const playlistTracks = playlist.tracks.concat(tracksIds);
+    var playlistTracks;
+
+    if(app.config.get('playlistAdding')) {
+      playlistTracks = playlist.tracks.concat(tracksIds);
+    }
+    else {
+      playlistTracks = [tracksIds, playlist.tracks];
+    }
+
     await app.db.Playlist.updateAsync({ _id }, { $set: { tracks: playlistTracks } });
     await refresh();
     ToastsActions.add('success', `${tracksIds.length} tracks were successfully added to "${playlist.name}"`);

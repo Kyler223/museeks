@@ -55,7 +55,7 @@ class ConfigModule extends Module {
         by: SortBy.ARTIST,
         order: SortOrder.ASC,
       },
-      // musicFolders: [],
+      playlistAdding: false,
       sleepBlocker: false,
       autoUpdateChecker: true,
       minimizeToTray: false,
