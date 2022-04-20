@@ -8,7 +8,6 @@ import types from '../action-types';
 import * as app from '../../lib/app';
 import * as ToastsActions from './ToastsActions';
 import * as PlayerActions from './PlayerActions';
-import ConfigModule from '../../../main/modules/config';
 
 const remote = require('@electron/remote');
 
