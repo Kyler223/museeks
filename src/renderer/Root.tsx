@@ -1,21 +1,26 @@
 import React from 'react';
 
+import logger from '../shared/lib/logger';
 import * as ViewMessage from './elements/ViewMessage/ViewMessage';
 import ExternalLink from './elements/ExternalLink/ExternalLink';
 
-interface State {
-  hasError: boolean;
-}
+type Props = {
+  children: React.ReactNode;
+};
 
-class Root extends React.Component<unknown, State> {
-  constructor(props: unknown) {
+type State = {
+  hasError: boolean;
+};
+
+class Root extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { hasError: false };
   }
 
   componentDidCatch(err: Error) {
     // RIP
-    console.error(`Museeks crashed: ${err}`);
+    logger.error(`Museeks crashed: ${err}`);
     this.setState({ hasError: true });
   }
 

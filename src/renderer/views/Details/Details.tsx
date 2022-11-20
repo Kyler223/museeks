@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
+import logger from '../../../shared/lib/logger';
 
 // import Placeholder from '../../../images/assets/placeholder.png';
 // import * as coverUtils from '../../../shared/lib/utils-cover';
@@ -30,7 +31,7 @@ const Details: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubmit = useCallback(
-    async (e) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       if (!trackId) return;
 
       e.preventDefault();
@@ -41,7 +42,7 @@ const Details: React.FC = () => {
   );
 
   const handleCancel = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       navigate(-1);
     },
@@ -52,7 +53,7 @@ const Details: React.FC = () => {
     db.Track.findOne(
       { _id: trackId },
       async (err: Error, track: TrackModel) => {
-        if (err !== null) return console.error(err);
+        if (err !== null) return logger.error(err);
 
         setFormData({
           title: track.title ?? '',

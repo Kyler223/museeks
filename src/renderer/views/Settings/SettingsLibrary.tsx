@@ -8,6 +8,7 @@ import * as PlayerActions from '../../store/actions/PlayerActions';
 import { LibraryState } from '../../store/reducers/library';
 import Button from '../../elements/Button/Button';
 import channels from '../../../shared/lib/ipc-channels';
+import logger from '../../../shared/lib/logger';
 
 interface Props {
   library: LibraryState;
@@ -28,7 +29,7 @@ const SettingsLibrary: React.FC<Props> = (props) => {
 
     if (result.filePaths) {
       LibraryActions.add(result.filePaths).catch((err) => {
-        console.warn(err);
+        logger.warn(err);
       });
     }
   }, []);
@@ -42,15 +43,6 @@ const SettingsLibrary: React.FC<Props> = (props) => {
         </Setting.Description>
         <Button disabled={props.library.refreshing} onClick={openFolderSelector}>
           Add files or folders
-        </Button>
-      </Setting.Section>
-      <Setting.Section>
-        <h3>Sync Music</h3>
-        <Setting.Description>
-          This will sync your folders of music with your library.
-        </Setting.Description>
-        <Button>
-          Sync
         </Button>
       </Setting.Section>
       <Setting.Section>

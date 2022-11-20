@@ -9,6 +9,7 @@ import { Tray, Menu, app, ipcMain, nativeImage } from 'electron';
 
 import { TrackModel, PlayerStatus } from '../../shared/types/museeks';
 import channels from '../../shared/lib/ipc-channels';
+import logger from '../../shared/lib/logger';
 import ModuleWindow from './module-window';
 
 class TrayModule extends ModuleWindow {
@@ -53,14 +54,15 @@ class TrayModule extends ModuleWindow {
 
   async load(): Promise<void> {
     // Fix for gnome-shell and high-dpi
+    // TODO: should we still use that?
     if (os.platform() === 'linux') {
       ps.lookup(
         {
           command: 'gnome-shell',
         },
-        (err: Error, _processes: Record<string, any>) => {
+        (err: Error) => {
           if (err) {
-            console.warn(err);
+            logger.warn(err);
           } else {
             this.trayIcon = nativeImage.createFromPath(
               path.join(path.resolve(path.join(__dirname, '../../src/images/logos')), 'museeks-tray.png')
@@ -152,14 +154,6 @@ class TrayModule extends ModuleWindow {
       this.status = PlayerStatus.PLAY;
       this.updateTrayMetadata(track);
       this.setContextMenu(PlayerStatus.PLAY);
-    });
-
-    this.window.on('hide', () => {
-      this.create();
-    });
-
-    this.window.on('show', () => {
-      this.destroy();
     });
   }
 

@@ -5,33 +5,31 @@ import cx from 'classnames';
 import * as PlayerActions from '../../store/actions/PlayerActions';
 import { Repeat } from '../../../shared/types/museeks';
 
-import playerRepeatOneIcon from '../../../images/icons/player-repeat-one.svg';
-import playerRepeatIcon from '../../../images/icons/player-repeat.svg';
+import icons from '../../lib/icons';
 
 import styles from './common.module.css';
 
 const svgMap = {
-  [Repeat.ONE]: playerRepeatOneIcon,
-  [Repeat.ALL]: playerRepeatIcon,
-  [Repeat.NONE]: playerRepeatIcon,
-  default: playerRepeatIcon,
+  [Repeat.ONE]: icons.REPEAT_ONE,
+  [Repeat.ALL]: icons.REPEAT,
+  [Repeat.NONE]: icons.REPEAT,
+  default: icons.REPEAT,
 };
 
 interface Props {
   repeat: Repeat;
 }
 
-export default class ButtonRepeat extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
+const ButtonRepeat: React.FC<Props> = (props) => {
+  const svg = svgMap[props.repeat] || svgMap.default;
+  const buttonClasses = cx(styles.button, {
+    [styles.active]: props.repeat === Repeat.ONE || props.repeat === Repeat.ALL,
+  });
 
-    this.toggleRepeat = this.toggleRepeat.bind(this);
-  }
-
-  toggleRepeat() {
+  const toggleRepeat = () => {
     let repeat = Repeat.NONE;
 
-    switch (this.props.repeat) {
+    switch (props.repeat) {
       case Repeat.NONE:
         repeat = Repeat.ALL;
         break;
@@ -46,18 +44,13 @@ export default class ButtonRepeat extends React.Component<Props> {
     }
 
     PlayerActions.repeat(repeat);
-  }
+  };
 
-  render() {
-    const svg = svgMap[this.props.repeat] || svgMap.default;
-    const buttonClasses = cx(styles.button, {
-      [styles.active]: this.props.repeat === Repeat.ONE || this.props.repeat === Repeat.ALL,
-    });
+  return (
+    <button className={buttonClasses} onClick={toggleRepeat}>
+      <InlineSVG src={svg} className={styles.icon} />
+    </button>
+  );
+};
 
-    return (
-      <button className={buttonClasses} onClick={this.toggleRepeat}>
-        <InlineSVG src={svg} className={styles.icon} />
-      </button>
-    );
-  }
-}
+export default ButtonRepeat;

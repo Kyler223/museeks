@@ -1,10 +1,10 @@
-import os from 'os';
 import React, { useCallback, useEffect } from 'react';
 import KeyBinding from 'react-keybinding-component';
 import { useNavigate } from 'react-router';
 import { useDrop } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 
+import logger from '../shared/lib/logger';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Toasts from './components/Toasts/Toasts';
@@ -17,6 +17,7 @@ import styles from './App.module.css';
 import { isCtrlKey } from './lib/utils-platform';
 import Player from './lib/player';
 import DropzoneImport from './components/DropzoneImport/DropzoneImport';
+import { getPlatform } from './lib/utils-xplat';
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,11 @@ import DropzoneImport from './components/DropzoneImport/DropzoneImport';
 |--------------------------------------------------------------------------
 */
 
-const Museeks: React.FC = (props) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const Museeks: React.FC<Props> = (props) => {
   const navigate = useNavigate();
 
   // App shortcuts (not using Electron's global shortcuts API to avoid conflicts
@@ -63,7 +68,7 @@ const Museeks: React.FC = (props) => {
 
   useEffect(() => {
     AppActions.init();
-  }, [navigate]);
+  }, []);
 
   // Drop behavior to add tracks to the library from any string
   const [{ isOver }, drop] = useDrop(() => {
@@ -77,7 +82,7 @@ const Museeks: React.FC = (props) => {
             // TODO: Import to playlist here
           })
           .catch((err) => {
-            console.warn(err);
+            logger.warn(err);
           });
       },
       collect: (monitor) => ({
@@ -87,7 +92,7 @@ const Museeks: React.FC = (props) => {
   });
 
   return (
-    <div className={`${styles.root} os__${os.platform()}`} ref={drop}>
+    <div className={`${styles.root} os__${getPlatform()}`} ref={drop}>
       <KeyBinding onKey={onKey} preventInputConflict />
       <Header />
       <main className={styles.mainContent}>{props.children}</main>

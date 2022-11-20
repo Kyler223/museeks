@@ -2,8 +2,7 @@ import React from 'react';
 import InlineSVG from 'svg-inline-react';
 import cx from 'classnames';
 
-import playerShuffleIcon from '../../../images/icons/player-shuffle.svg';
-
+import icons from '../../lib/icons';
 import * as PlayerActions from '../../store/actions/PlayerActions';
 
 import styles from './common.module.css';
@@ -12,26 +11,22 @@ interface Props {
   shuffle: boolean;
 }
 
-export default class ButtonShuffle extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
+const ButtonShuffle: React.FC<Props> = (props) => {
+  const buttonClasses = cx(styles.button, {
+    [styles.active]: props.shuffle,
+  });
 
-    this.toggleShuffle = this.toggleShuffle.bind(this);
-  }
+  return (
+    <button
+      type='button'
+      className={buttonClasses}
+      onClick={() => {
+        PlayerActions.shuffle(!props.shuffle);
+      }}
+    >
+      <InlineSVG src={icons.SHUFFLE} className={styles.icon} />
+    </button>
+  );
+};
 
-  toggleShuffle() {
-    PlayerActions.shuffle(!this.props.shuffle);
-  }
-
-  render() {
-    const buttonClasses = cx(styles.button, {
-      [styles.active]: this.props.shuffle,
-    });
-
-    return (
-      <button type='button' className={buttonClasses} onClick={this.toggleShuffle}>
-        <InlineSVG src={playerShuffleIcon} className={styles.icon} />
-      </button>
-    );
-  }
-}
+export default ButtonShuffle;
